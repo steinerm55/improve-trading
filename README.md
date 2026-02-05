@@ -4,7 +4,7 @@ I have two trading apps MetaTrader4 (Desktop) and TradingView (Web).
 
 QA
 
-Q: show me what ways of extensibility is available to both of them?
+### Q: show me what ways of extensibility is available to both of them?
 A:
 
 ### MetaTrader 4 (Desktop)
@@ -85,7 +85,7 @@ A:
 | Platform | Windows (Wine/VPS for Mac/Linux) | Web browser (cross-platform) |
 | Offline Development | Yes | No |
 
-Q: what are the principles of volume-trading?
+### Q: what are the principles of volume-trading?
 A:
 
 Volume trading uses trading volume — the number of shares/contracts traded in a period — to gauge the conviction and participation behind price moves. Price tells you *what* happened; volume tells you *how many people agreed*.
@@ -140,7 +140,7 @@ Abnormal volume spikes at the end of trends often mark turning points — capitu
 2. Low-volume rallies or declines are suspect — wait for confirmation
 3. Always combine volume with price structure (support/resistance, trendlines) — volume confirms, it doesn't dictate
 
-Q: what user interface is volume-trading using?
+### Q: what user interface is volume-trading using?
 
 A:
 
@@ -179,7 +179,7 @@ A volume trader's workspace commonly includes:
 
 MT4 displays **tick volume** (number of price changes), not **real volume** (actual contracts traded). This is because forex is decentralized (OTC) — there's no single exchange reporting true volume. Tick volume is generally considered a reasonable proxy, but it's less reliable than real exchange volume available on stocks, futures, or crypto. TradingView shows real volume for exchange-traded instruments and tick volume for forex.
 
-Q: what is tick volume vs. real volume?
+### Q: what is tick volume vs. real volume?
 A:
 
 ### Real Volume (Exchange Volume)
@@ -227,3 +227,79 @@ Research (including a well-known study by Caspar Marney) shows **tick volume cor
 
 - **MT4**: shows tick volume by default for forex pairs. No way to get real forex volume (it doesn't exist centrally). For CFDs on stocks/futures, it's still tick volume from your broker.
 - **TradingView**: shows real volume for exchange-traded instruments (stocks, futures, crypto). Shows tick volume for forex. The chart label typically indicates which type is displayed.
+
+### Q: explain the order book and its availability
+A:
+
+### What Is the Order Book?
+
+The order book (also called **Depth of Market / DOM** or **Level 2 data**) is a real-time list of all pending buy and sell orders for an instrument, organized by price level. It shows:
+
+- **Bids** (buy orders) — prices buyers are willing to pay, and the size at each price
+- **Asks** (sell orders) — prices sellers are willing to accept, and the size at each price
+- **Spread** — the gap between the best bid and best ask
+
+**Example (simplified):**
+
+| Bid Size | Bid Price | Ask Price | Ask Size |
+|---|---|---|---|
+| | | 1.1053 | 50 lots |
+| | | 1.1052 | 120 lots |
+| | | 1.1051 | 80 lots |
+| 90 lots | 1.1050 | | |
+| 200 lots | 1.1049 | | |
+| 60 lots | 1.1048 | | |
+
+Large bid sizes = strong buying interest (support). Large ask sizes = strong selling resistance.
+
+### Why It Matters for Trading
+
+- **See pending supply/demand** before it becomes a trade — price action only shows completed trades
+- **Spot large orders** (institutional walls) that may act as support/resistance
+- **Gauge liquidity** — thin order books mean price can move fast on small volume; thick books absorb orders
+- **Detect spoofing** — large orders that appear and disappear may be manipulation (common in crypto)
+- **Time entries** — enter when a large bid wall is absorbing selling, or when a large ask wall gets eaten through
+
+### Order Book vs. Volume
+
+| | Order Book | Volume |
+|---|---|---|
+| Shows | **Pending** orders (intentions) | **Completed** trades (history) |
+| Time | Real-time snapshot, constantly changing | Accumulated over a time period |
+| Tells you | Where supply/demand *will be* | Where supply/demand *was* |
+| Limitation | Orders can be cancelled (spoofing) | Doesn't show unfilled orders |
+
+They complement each other: volume tells you what happened, the order book tells you what's waiting to happen.
+
+### Availability by Market Type
+
+| Market | Order Book Available? | Why |
+|---|---|---|
+| **Stocks** | Yes (Level 2 / NYSE OpenBook / NASDAQ TotalView) | Centralized exchanges track all orders |
+| **Futures** | Yes (CME, ICE, Eurex publish full depth) | Centralized exchanges |
+| **Crypto** | Yes (exchanges like Binance, Coinbase publish order books via API) | Centralized exchanges |
+| **Forex (spot)** | Partial / Limited | Decentralized OTC — no single order book exists. Brokers show their own liquidity or aggregated ECN depth, but it's a fraction of the total market |
+
+### Availability in Your Platforms
+
+#### TradingView
+
+- **DOM panel** — available for instruments from supported brokers (Interactive Brokers, Binance, etc.). Shows bid/ask depth with volume at each price level. Access via right-click chart → "Depth of Market" or the DOM button.
+- **Not available for all instruments** — depends on the broker connection and data feed. Forex DOM shows only the connected broker's liquidity.
+- **Order Book heatmap** — some community Pine Script indicators visualize order book-like data, but real-time DOM data is not accessible from Pine Script itself.
+
+#### MetaTrader 4
+
+- **Market Depth window** — available if the broker supports it (`MarketInfo(Symbol(), MODE_MARGINREQUIRED)` doesn't control this — it's broker-dependent). Access via right-click on Market Watch → "Depth of Market."
+- **Limited depth** — MT4's DOM typically shows fewer price levels than dedicated futures/stock platforms. MT4 was designed primarily for forex where full depth isn't available.
+- **MQL4 access** — `MarketBookGet()` function retrieves order book data programmatically for use in EAs, but only if the broker provides it.
+- **Many forex brokers don't enable it** — since spot forex has no true central order book, some brokers don't expose DOM at all in MT4.
+
+### For Full Order Book Trading
+
+If order book analysis is a priority, the best data comes from **centralized exchanges**:
+- **Futures** (CME via NinjaTrader, Sierra Chart, or Bookmap) — full depth, no spoofing ambiguity
+- **Crypto** (Binance, Coinbase via their APIs or TradingView) — full depth, though spoofing is common
+- **Stocks** (Level 2 via Interactive Brokers, Webull, or dedicated platforms like DAS Trader)
+
+MT4 and TradingView provide basic DOM for supported instruments, but they're not specialized order flow platforms. Dedicated tools like **Bookmap**, **Jigsaw Trading**, or **Sierra Chart** offer heatmap visualization, order flow analysis, and historical order book replay.
