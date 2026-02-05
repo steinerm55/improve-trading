@@ -139,3 +139,41 @@ Abnormal volume spikes at the end of trends often mark turning points — capitu
 1. Volume should expand in the direction of the trend — if it doesn't, be cautious
 2. Low-volume rallies or declines are suspect — wait for confirmation
 3. Always combine volume with price structure (support/resistance, trendlines) — volume confirms, it doesn't dictate
+
+Q: what user interface is volume-trading using?
+A:
+
+Volume trading doesn't have a single dedicated UI — it's done through chart-based trading platforms that display volume data alongside price. Here's how it looks in your two platforms:
+
+### TradingView (Web)
+
+- **Volume bars** at the bottom of every chart (built-in, enabled by default)
+- **Volume Profile** — horizontal histogram overlay showing volume by price level (available as a built-in indicator or via community scripts)
+- **VWAP** — a line overlaid on the price chart (`indicator: VWAP`)
+- **OBV, MFI, CMF, A/D** — all available as built-in indicators added from the Indicators menu
+- **Heatmap / Volume Footprint** — available through community Pine Script indicators or TradingView's built-in Volume Footprint chart type (requires Premium+)
+- **DOM (Depth of Market)** — order book panel showing bid/ask volume at each price level (available with supported brokers)
+- **Alerts** — set volume-based conditions (e.g., "volume crosses above 2x 50-period average") to trigger notifications
+
+### MetaTrader 4 (Desktop)
+
+- **Volume bars** at the bottom of the chart (tick volume by default — MT4 shows tick volume, not real exchange volume, since forex is OTC)
+- **Built-in indicators**: OBV, MFI, A/D, Volumes, Money Flow
+- **Custom indicators via MQL4** — Volume Profile, VWAP, footprint charts, and delta volume can be added through custom or marketplace indicators
+- **Market Depth window** — shows Level 2 order book data (if supported by the broker)
+- **Strategy Tester** — backtest volume-based EAs with historical tick data
+
+### Typical Volume Trader's Screen Layout
+
+A volume trader's workspace commonly includes:
+
+1. **Main price chart** with candlesticks + volume bars below
+2. **Volume Profile** overlay (or separate indicator pane) showing volume distribution by price
+3. **VWAP line** on the price chart as dynamic support/resistance
+4. **OBV or A/D** in a sub-pane to track cumulative money flow
+5. **MFI or CMF** in another sub-pane for overbought/oversold signals
+6. **DOM / Order Book** panel (if available) for real-time bid/ask volume
+
+### Important Note on MT4 Volume
+
+MT4 displays **tick volume** (number of price changes), not **real volume** (actual contracts traded). This is because forex is decentralized (OTC) — there's no single exchange reporting true volume. Tick volume is generally considered a reasonable proxy, but it's less reliable than real exchange volume available on stocks, futures, or crypto. TradingView shows real volume for exchange-traded instruments and tick volume for forex.
