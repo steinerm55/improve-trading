@@ -141,6 +141,7 @@ Abnormal volume spikes at the end of trends often mark turning points — capitu
 3. Always combine volume with price structure (support/resistance, trendlines) — volume confirms, it doesn't dictate
 
 Q: what user interface is volume-trading using?
+
 A:
 
 Volume trading doesn't have a single dedicated UI — it's done through chart-based trading platforms that display volume data alongside price. Here's how it looks in your two platforms:
@@ -177,3 +178,52 @@ A volume trader's workspace commonly includes:
 ### Important Note on MT4 Volume
 
 MT4 displays **tick volume** (number of price changes), not **real volume** (actual contracts traded). This is because forex is decentralized (OTC) — there's no single exchange reporting true volume. Tick volume is generally considered a reasonable proxy, but it's less reliable than real exchange volume available on stocks, futures, or crypto. TradingView shows real volume for exchange-traded instruments and tick volume for forex.
+
+Q: what is tick volume vs. real volume?
+A:
+
+### Real Volume (Exchange Volume)
+
+The actual number of shares, contracts, or coins traded in a time period. Reported directly by the exchange where the trades occur.
+
+- **Available for:** stocks, futures, commodities, crypto (anything traded on a centralized exchange)
+- **Example:** 1.5 million shares of AAPL traded in a 5-minute candle
+- **Source:** the exchange's trade matching engine — every filled order is counted
+- **Reliability:** high — it's a direct, auditable count of real transactions
+
+### Tick Volume
+
+The number of price changes (ticks) in a time period. Each time the bid/ask price updates, that's one tick — regardless of how many contracts were behind that price change.
+
+- **Available for:** forex, CFDs, and other OTC (over-the-counter) instruments with no central exchange
+- **Example:** 3,200 ticks in a 5-minute candle on EUR/USD
+- **Source:** your broker's price feed — different brokers may report different tick counts
+- **Reliability:** moderate — it's a proxy, not a direct measure of actual money changing hands
+
+### Why Forex Has No Real Volume
+
+Forex is decentralized — trades happen across thousands of banks, brokers, and liquidity providers worldwide. There's no single exchange aggregating all trades, so nobody knows the true total volume. Each broker only sees its own order flow.
+
+### How They Compare
+
+| Aspect | Real Volume | Tick Volume |
+|---|---|---|
+| Measures | Actual units traded | Number of price changes |
+| Source | Centralized exchange | Broker's price feed |
+| Consistency | Same across all brokers | Varies by broker |
+| Accuracy | Exact | Approximate proxy |
+| Where used | Stocks, futures, crypto | Forex, CFDs |
+| Size information | Yes (100 shares ≠ 10,000 shares) | No (a 1-lot tick = a 100-lot tick) |
+
+### The Key Limitation of Tick Volume
+
+Tick volume doesn't know *how much* was traded — only that *something* moved. A single tick could be a 0.01-lot retail order or a 500-lot institutional block. Real volume captures that difference; tick volume treats them identically.
+
+### Does Tick Volume Still Work?
+
+Research (including a well-known study by Caspar Marney) shows **tick volume correlates ~90% with real volume** in liquid forex pairs. The reasoning: more real trading activity creates more price updates. So while it's not exact, the volume principles (confirms trends, precedes price, validates breakouts) still broadly apply to tick volume — just with less precision.
+
+### In Your Platforms
+
+- **MT4**: shows tick volume by default for forex pairs. No way to get real forex volume (it doesn't exist centrally). For CFDs on stocks/futures, it's still tick volume from your broker.
+- **TradingView**: shows real volume for exchange-traded instruments (stocks, futures, crypto). Shows tick volume for forex. The chart label typically indicates which type is displayed.
