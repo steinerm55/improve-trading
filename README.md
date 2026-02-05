@@ -85,3 +85,57 @@ A:
 | Platform | Windows (Wine/VPS for Mac/Linux) | Web browser (cross-platform) |
 | Offline Development | Yes | No |
 
+Q: what are the principles of volume-trading?
+A:
+
+Volume trading uses trading volume — the number of shares/contracts traded in a period — to gauge the conviction and participation behind price moves. Price tells you *what* happened; volume tells you *how many people agreed*.
+
+### Core Principles
+
+**1. Volume confirms trends**
+- Rising price + rising volume = strong uptrend (buyers are committed)
+- Rising price + falling volume = weakening uptrend (demand fading)
+- Falling price + high volume = strong downtrend (heavy selling)
+- Falling price + low volume = weak selling, possible bounce
+
+**2. Volume precedes price**
+Volume changes often appear *before* significant price moves. During consolidation, watch for volume building up — capital is entering before the breakout happens.
+
+**3. Breakouts need volume**
+A breakout without volume is a fakeout. High-volume breakouts (50%+ above average) signal institutional commitment and are more likely to sustain. Low-volume breakouts typically fail and revert.
+
+**4. Climax volume signals exhaustion**
+Abnormal volume spikes at the end of trends often mark turning points — capitulation (bottoms) or euphoria (tops). When one side becomes overly aggressive, the move stalls or reverses.
+
+**5. Volume divergence warns of reversals**
+- Price makes new highs but volume declines = uptrend losing strength
+- Price makes new lows but volume declines = downtrend losing momentum
+- Volume should expand with the trend; contraction is a red flag
+
+### Key Volume Indicators
+
+| Indicator | What It Does |
+|---|---|
+| **OBV (On-Balance Volume)** | Cumulative: adds volume on up-closes, subtracts on down-closes. Rising OBV + rising price = confirmation; divergence = warning |
+| **VWAP (Volume-Weighted Average Price)** | Session average price weighted by volume. Institutional benchmark. Price above VWAP = bullish; below = bearish |
+| **Volume Profile** | Horizontal histogram of volume by price level. High-Volume Nodes = support/resistance zones; Low-Volume Nodes = breakout zones |
+| **A/D Line (Accumulation/Distribution)** | Measures money flow based on where price closes within its range. Rising A/D + rising price = accumulation |
+| **MFI (Money Flow Index)** | Volume-weighted RSI. MFI > 80 = overbought; MFI < 20 = oversold. Divergences signal trend weakness |
+| **CMF (Chaikin Money Flow)** | Buying/selling pressure over a period. CMF > 0 = buying dominates; CMF < 0 = selling dominates |
+
+### Practical Application
+
+**Entries:**
+- Breakout + volume surge (50%+ above average) = go
+- Bounce off support/resistance with above-average volume = confirmed level
+- Climax volume at extremes + divergence in OBV/MFI = reversal setup
+
+**Exits:**
+- Volume fading as the move extends = stall warning
+- Climax volume spike after an extended run = take profits
+- Price stretching far from VWAP = reversion likely
+
+**Rules of thumb:**
+1. Volume should expand in the direction of the trend — if it doesn't, be cautious
+2. Low-volume rallies or declines are suspect — wait for confirmation
+3. Always combine volume with price structure (support/resistance, trendlines) — volume confirms, it doesn't dictate
